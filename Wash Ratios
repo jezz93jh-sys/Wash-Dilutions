@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evolution Detailing Dilution Guide</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #0a2a43;
+    color: white;
+    text-align: center;
+  }
+  header {
+    background-color: #0f3d5d;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+  }
+  .wash-type {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .button {
+    padding: 2rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+  }
+  .maintenance { background-color: #007BFF; }
+  .standard { background-color: #0056b3; }
+  .heavy { background-color: #ff6600; }
+  .product-list {
+    padding: 1rem;
+  }
+  .product {
+    background-color: #12476f;
+    margin: 0.5rem 0;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: left;
+  }
+  .back-button {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<header>Evolution Detailing - Dilution Guide</header>
+
+<div id="home" class="wash-type">
+  <button class="button maintenance" onclick="showProducts('Maintenance')">Maintenance</button>
+  <button class="button standard" onclick="showProducts('Standard')">Standard</button>
+  <button class="button heavy" onclick="showProducts('Heavy')">Heavy</button>
+</div>
+
+<div id="products" class="product-list" style="display:none;"></div>
+
+<script>
+const data = {
+  "Maintenance": [
+    { name: "Yum Citrus", amount: "145ml", water: "855ml", equipment: "IK2 Pump Sprayer" },
+    { name: "Touchless Foam", amount: "75ml", water: "925ml", equipment: "Foam Cannon" },
+    { name: "Yum Foam+", amount: "35ml", water: "965ml", equipment: "Foam Cannon" },
+    { name: "Yum Wheels", amount: "1000ml (neat)", water: "0ml", equipment: "Spray Bottle" },
+    { name: "Korrosol", amount: "1000ml (neat)", water: "0ml", equipment: "Spray Bottle" },
+  ],
+  "Standard": [
+    { name: "Yum Citrus", amount: "145ml", water: "855ml", equipment: "IK2 Pump Sprayer" },
+    { name: "Touchless Foam", amount: "100ml", water: "900ml", equipment: "Foam Cannon" },
+    { name: "Yum Foam+", amount: "50ml", water: "950ml", equipment: "Foam Cannon" },
+    { name: "Yum Wheels", amount: "1000ml (neat)", water: "0ml", equipment: "Spray Bottle" },
+    { name: "Korrosol", amount: "1000ml (neat)", water: "0ml", equipment: "Spray Bottle" },
+  ],
+  "Heavy": [
+    { name: "Yum Citrus", amount: "200ml", water: "800ml", equipment: "IK2 Pump Sprayer" },
+    { name: "Touchless Foam", amount: "165ml", water: "835ml", equipment: "Foam Cannon" },
+    { name: "Yum Foam+", amount: "50ml", water: "950ml", equipment: "Foam Cannon" },
+    { name: "Yum Wheels", amount: "1000ml (neat)", water: "0ml", equipment: "Spray Bottle" },
+    { name: "Korrosol", amount: "1000ml (neat)", water: "0ml", equipment: "Spray Bottle" },
+  ],
+};
+
+function showProducts(type) {
+  document.getElementById('home').style.display = 'none';
+  const productsDiv = document.getElementById('products');
+  productsDiv.style.display = 'block';
+  productsDiv.innerHTML = `<h2>${type} Wash</h2>`;
+  data[type].forEach(p => {
+    productsDiv.innerHTML += `
+      <div class='product'>
+        <strong>${p.name}</strong><br>
+        Product: ${p.amount}<br>
+        Water: ${p.water}<br>
+        Equipment: ${p.equipment}
+      </div>
+    `;
+  });
+  productsDiv.innerHTML += `<button class='back-button' onclick='goHome()'>Back</button>`;
+}
+
+function goHome() {
+  document.getElementById('products').style.display = 'none';
+  document.getElementById('home').style.display = 'grid';
+}
+</script>
+
+</body>
+</html>
