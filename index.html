@@ -56,21 +56,28 @@
     font-size: 1rem;
     cursor: pointer;
   }
+  /* Mobile tweaks */
+  @media (max-width: 600px) {
+    .button {
+      padding: 1.5rem;
+      font-size: 1.2rem;
+    }
+    .product {
+      font-size: 1rem;
+    }
+    .back-button {
+      font-size: 0.9rem;
+    }
+  }
 </style>
-</head>
-<body>
-
-<header>Evolution Detailing - Dilution Guide</header>
-
-<div id="home" class="wash-type">
-  <button class="button maintenance" onclick="showProducts('Maintenance')">Maintenance</button>
-  <button class="button standard" onclick="showProducts('Standard')">Standard</button>
-  <button class="button heavy" onclick="showProducts('Heavy')">Heavy</button>
-</div>
-
-<div id="products" class="product-list" style="display:none;"></div>
-
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+    var password = prompt("Enter Password to access this page:");
+    if (password !== "Wash234") {
+        document.body.innerHTML = "<h2>Access Denied</h2>";
+    }
+});
+
 const data = {
   "Maintenance": [
     { name: "Yum Citrus", amount: "145ml", water: "855ml", equipment: "IK2 Pump Sprayer" },
@@ -118,6 +125,18 @@ function goHome() {
   document.getElementById('home').style.display = 'grid';
 }
 </script>
+</head>
+<body>
+
+<header>Evolution Detailing - Dilution Guide</header>
+
+<div id="home" class="wash-type">
+  <button class="button maintenance" onclick="showProducts('Maintenance')">Maintenance</button>
+  <button class="button standard" onclick="showProducts('Standard')">Standard</button>
+  <button class="button heavy" onclick="showProducts('Heavy')">Heavy</button>
+</div>
+
+<div id="products" class="product-list" style="display:none;"></div>
 
 </body>
 </html>
